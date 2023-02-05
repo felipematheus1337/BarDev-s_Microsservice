@@ -24,4 +24,8 @@ public class BeerService {
     public List<BeerResponse> getGreaterAbv(Integer abv) {
         return beerClient.getBeerByAbvGreaterThan(abv);
     }
+
+    public List<BeerResponse> getLesserAbv(Integer abvLt) {
+        return beerClient.getBeerByAbvLessThan(abvLt);
+    }
 }

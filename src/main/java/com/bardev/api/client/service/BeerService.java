@@ -32,4 +32,8 @@ public class BeerService {
     public List<BeerResponse> getGreaterIbu(Integer ibuGt) {
         return beerClient.getBeerByIbuGreaterThan(ibuGt);
     }
+
+    public List<BeerResponse> getLesserIbu(Integer ibuLt) {
+        return beerClient.getBeerByIbuLessThan(ibuLt);
+    }
 }

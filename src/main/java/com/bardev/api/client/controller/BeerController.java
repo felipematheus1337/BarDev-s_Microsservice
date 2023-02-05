@@ -33,4 +33,9 @@ public class BeerController {
     public List<BeerResponse> getAbvLesser(@RequestParam(name = "abv_lt") Integer abvLt) {
         return beerService.getLesserAbv(abvLt);
     }
+
+    @GetMapping("/ibu/maior{ibuGt}")
+    public List<BeerResponse> getIbuGreater(@RequestParam(name = "ibu_gt") Integer ibuGt) {
+        return beerService.getGreaterIbu(ibuGt);
+    }
 }

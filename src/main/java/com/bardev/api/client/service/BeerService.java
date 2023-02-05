@@ -20,4 +20,8 @@ public class BeerService {
     public List<BeerResponse> getRandomBeer() {
         return beerClient.getRandomBeer();
     }
+
+    public List<BeerResponse> getGreaterAbv(Integer abv) {
+        return beerClient.getBeerByAbvGreaterThan(abv);
+    }
 }

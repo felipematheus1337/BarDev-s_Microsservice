@@ -5,6 +5,7 @@ import com.bardev.api.client.response.BeerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface BeerClient {
 
     @GetMapping(value = "/{id}")
     List<BeerResponse> getBeerById(@PathVariable("id") Long id);
+
+    @GetMapping(value = "{abvGt}")
+    List<BeerResponse> getBeerByAbvGreaterThan(@RequestParam(name = "abv_gt") Integer abvGt);
+
 }

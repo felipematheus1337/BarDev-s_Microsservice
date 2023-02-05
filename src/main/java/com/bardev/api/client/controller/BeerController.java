@@ -3,10 +3,7 @@ package com.bardev.api.client.controller;
 import com.bardev.api.client.response.BeerResponse;
 import com.bardev.api.client.service.BeerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class BeerController {
     @GetMapping()
     public List<BeerResponse> getRandomBeer() {
         return beerService.getRandomBeer();
+    }
+
+    @GetMapping("/abv/maior{abvGt}")
+    public List<BeerResponse> getAbvGreater(@RequestParam(name = "abv_gt") Integer abvGt) {
+        return beerService.getGreaterAbv(abvGt);
     }
 }

@@ -46,7 +46,7 @@ public class BeerController {
         );
         return ResponseEntity.ok(cerveja);
     }
-    
+
      */
 
 

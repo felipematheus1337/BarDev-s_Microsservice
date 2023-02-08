@@ -11,19 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v1/menu")
 @RequiredArgsConstructor
-public class BeerController {
-
-    private final BeerServiceInternal beerServiceInternal;
-
-
-    @GetMapping("/alcool/fraco")
-    private ResponseEntity<List<Beer>> getAllBeersWithStrongBitter() {
-          var beers = beerServiceInternal.listOfHighBitterBeers();
-          return ResponseEntity.ok(beers);
-    }
-
+public class MenuController {
 
 
 

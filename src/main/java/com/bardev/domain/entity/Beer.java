@@ -1,6 +1,7 @@
 package com.bardev.domain.entity;
 
 
+import com.bardev.domain.entity.enums.AlcoholLevel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

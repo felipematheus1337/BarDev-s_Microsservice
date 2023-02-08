@@ -5,6 +5,7 @@ import com.bardev.api.client.repository.BeerClient;
 import com.bardev.api.client.response.BeerResponse;
 import com.bardev.api.client.service.BeerService;
 import com.bardev.domain.entity.Beer;
+import com.bardev.domain.service.BeerServiceInternal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,33 +22,16 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class BeerController {
 
-    private final BeerService beerService;
+    private final BeerServiceInternal beerServiceInternal;
 
 
-    /*@GetMapping("/alcool/fraco")
-    private ResponseEntity<Beer> getBeerWithWeakAlcohol() {
-        var beerResponse =beerService.getGreaterAbv(5);
-        Random random = new Random();
-        int randomIndex = random.nextInt(beerResponse.size());
-        var beerFinded = beerResponse.get(randomIndex);
-        Beer cerveja = new Beer();
-        cerveja.setId(beerFinded.getId().toString());
-        cerveja.setPrice(300);
-        cerveja.setName(beerFinded.getName());
-        cerveja.setDescription(beerFinded.getDescription());
-        cerveja.setAlcoholLevel(
-                beerFinded.getAbv()  != null ? beerFinded.getAbv() : 0.0
-        );
-        cerveja.setBitternessLevel(
-                beerFinded.getIbu() != null ? beerFinded.getIbu() : 0.0
-        );
-        cerveja.setColorLevel(
-                beerFinded.getEbc() != null ? beerFinded.getEbc() : 0.0
-        );
-        return ResponseEntity.ok(cerveja);
+    @GetMapping("/alcool/fraco")
+    private ResponseEntity<List<Beer>> getAllBeersWithStrongBitter() {
+          var beers = beerServiceInternal.listOfHighBitterBeers();
+          return ResponseEntity.ok(beers);
     }
 
-     */
+
 
 
 }

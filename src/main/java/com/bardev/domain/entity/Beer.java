@@ -27,7 +27,7 @@ public class Beer implements Serializable {
 
     private ColorLevel colorLevel;
 
-    
+
 
 
 

@@ -29,4 +29,15 @@ public interface BeerClient {
 
     @GetMapping(value = "{ibuLt}")
     List<BeerResponse> getBeerByIbuLessThan(@RequestParam(name = "ibu_lt") Integer ibuLt);
+
+    @GetMapping(value = "{ebcGt}")
+    List<BeerResponse> getBeerByEbcGreaterThan(@RequestParam(name = "ebc_gt") Integer ebcGt);
+
+    @GetMapping(value = "{ebcLt}")
+    List<BeerResponse> getBeerByEbcLessThan(@RequestParam(name = "ebc_lt") Integer ebcLt);
+
+
+
+
+
 }

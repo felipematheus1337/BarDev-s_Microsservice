@@ -9,4 +9,6 @@ public class BeerResponse {
     private String description;
     private Long abv;
     private Long ibu;
+
+    private Long ebc;
 }

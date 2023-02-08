@@ -8,17 +8,15 @@ public enum ColorLevel implements LevelConverter {
     CLARA, AMBAR, ESCURA;
 
     @Override
-    public Enum convert(double value) {
-        return Stream.of(ColorLevel.values())
-                .filter(colorLevel -> {
-                    return switch (colorLevel) {
-                        case CLARA -> value < 12;
-                        case AMBAR -> value > 12 && value <= 33;
-                        case ESCURA -> value > 33;
-                        default -> false;
-                    };
-                })
-                .findFirst()
-                .orElse(ColorLevel.AMBAR);
+    public Enum convert(double ebc) {
+
+        if (ebc < 12) {
+            return ColorLevel.CLARA;
+        } else if (ebc > 12 && ebc <= 33) {
+            return ColorLevel.AMBAR;
+        } else {
+            return ColorLevel.ESCURA;
+        }
     }
+
 }

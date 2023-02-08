@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/beer")
-public class BeerController {
+public class BeerWebServiceController {
 
     private final BeerService beerService;
 

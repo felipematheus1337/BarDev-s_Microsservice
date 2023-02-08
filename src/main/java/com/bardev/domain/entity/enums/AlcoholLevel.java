@@ -9,16 +9,12 @@ public enum AlcoholLevel implements LevelConverter {
 
     @Override
     public Enum convert(double abv) {
-       return Stream.of(AlcoholLevel.values())
-               .filter(alcoholLevel -> {
-                   return switch (alcoholLevel) {
-                       case BAIXO -> abv < 5;
-                       case MODERADO -> abv >= 5 && abv < 8;
-                       case ALTO -> abv >= 8;
-                       default -> false;
-                   };
-               })
-               .findFirst()
-               .orElse(AlcoholLevel.BAIXO);
+        if(abv < 5) {
+            return AlcoholLevel.BAIXO;
+        } else if(abv > 5 && abv < 8) {
+            return AlcoholLevel.MODERADO;
+        } else {
+            return AlcoholLevel.ALTO;
+        }
     }
 }

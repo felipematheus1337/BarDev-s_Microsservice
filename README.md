@@ -1,9 +1,10 @@
 # BarDev-s_Microsservice
 <h5>Um Sistema de bar de desenvolvedores que consome API Externas com Cervejas, que é a: https://punkapi.com/documentation/v2 com regras de negócios específicas, baseado no retorno do consumo dessa API Externa, tais como: </h5>
 
-<p>- Buscar cervejas com certo teor alcólico específico</p>
-<p>- Buscar cervejas com certa cor específica</p>
-<p>- Buscar cerveja  com certo sabor específico</p>
+<p>- Buscar cervejas com certo teor alcólico específico.</p>
+<p>- Buscar cervejas com certa cor específica.</p>
+<p>- Buscar cerveja  com certo sabor específico.</p>
+<h5>E todas essas buscas com lógica de negócio baseada nos valores de IBU,ABV && EBC.</h5>
 
 ## Tecnologias Utilizadas
 <div style="display: inline_block" align="left">

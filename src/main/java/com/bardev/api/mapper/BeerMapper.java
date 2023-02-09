@@ -1,6 +1,7 @@
 package com.bardev.api.mapper;
 
 
+import com.bardev.api.client.response.BeerResponse;
 import com.bardev.api.dto.BeerDTO;
 import com.bardev.domain.entity.Beer;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +26,15 @@ public class BeerMapper {
     }
 
 
+
     public List<BeerDTO> beerDTOList(List<Beer> beers) {
         return beers
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
+
+
 
 
 }

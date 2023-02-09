@@ -29,7 +29,7 @@
 <p>Tratamento personalizado de Exceção</p>
 <p>Documentação com Swagger</p>
 <p>CRUD</p>
-<p>Autenticação com JWT em breve...</p>
+<p>Autenticação com JWT</p>
 
 <hr/>
 

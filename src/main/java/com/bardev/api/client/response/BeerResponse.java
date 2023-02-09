@@ -1,8 +1,10 @@
 package com.bardev.api.client.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class BeerResponse {
     private Long id;
     private String name;

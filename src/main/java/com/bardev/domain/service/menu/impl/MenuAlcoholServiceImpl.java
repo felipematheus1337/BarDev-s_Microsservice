@@ -25,11 +25,14 @@ public class MenuAlcoholServiceImpl implements MenuService {
 
 
 
+
     @Override
     public List<BeerDTO> getHigher() {
         double highAlcoholBeerPriceDefault = 20.0;
         return setUp.setUpTheBeers(beerService.getGreaterAbv(8), highAlcoholBeerPriceDefault);
     }
+
+
 
     @Override
     public List<BeerDTO> getModerate() {
@@ -48,6 +51,8 @@ public class MenuAlcoholServiceImpl implements MenuService {
         return setUp.setUpTheBeers(beerService.getLesserAbv(5),lowAlcoholBeerPriceDefault);
 
     }
+
+
 
 
 }

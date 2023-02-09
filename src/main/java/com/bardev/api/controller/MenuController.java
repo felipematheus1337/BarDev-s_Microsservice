@@ -5,6 +5,7 @@ import com.bardev.api.dto.BeerDTO;
 import com.bardev.domain.entity.Beer;
 import com.bardev.domain.service.menu.impl.MenuAlcoholServiceImpl;
 import com.bardev.domain.service.menu.impl.MenuBitterServiceImpl;
+import com.bardev.domain.service.menu.impl.MenuColorServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class MenuController {
 
     private final MenuAlcoholServiceImpl menuAlcoholService;
     private final MenuBitterServiceImpl menuBitterService;
+    private final MenuColorServiceImpl menuColorService;
 
     @GetMapping("/alcool/maior")
     public ResponseEntity<List<BeerDTO>> getWithHigherAlcoholPercentage() {
@@ -54,6 +56,25 @@ public class MenuController {
     @GetMapping("/bitter/menor")
     public ResponseEntity<List<BeerDTO>> getWithWeakerBitter() {
         var beers = menuBitterService.getWeaker();
+        return ResponseEntity.ok(beers);
+    }
+
+
+    @GetMapping("/color/escura")
+    public ResponseEntity<List<BeerDTO>> getWithHigherColor() {
+        var beers = menuColorService.getHigher();
+        return ResponseEntity.ok(beers);
+    }
+
+    @GetMapping("/color/amber")
+    public ResponseEntity<List<BeerDTO>> getWithModerateColor() {
+        var beers = menuColorService.getModerate();
+        return ResponseEntity.ok(beers);
+    }
+
+    @GetMapping("/color/clara")
+    public ResponseEntity<List<BeerDTO>> getWithLighterColor() {
+        var beers = menuColorService.getWeaker();
         return ResponseEntity.ok(beers);
     }
 

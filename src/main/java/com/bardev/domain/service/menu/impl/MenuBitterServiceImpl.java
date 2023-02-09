@@ -35,7 +35,7 @@ public class MenuBitterServiceImpl implements MenuService {
                 }).collect(Collectors.toList());
     }
 
-    
+
     @Override
     public List<BeerDTO> getWeaker() {
         double weakerBitterPriceDefault = 6;

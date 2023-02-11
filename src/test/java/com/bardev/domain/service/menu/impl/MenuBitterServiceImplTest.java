@@ -3,14 +3,17 @@ package com.bardev.domain.service.menu.impl;
 import com.bardev.api.client.response.BeerResponse;
 import com.bardev.api.client.service.BeerService;
 import com.bardev.api.dto.BeerDTO;
+import com.bardev.domain.entity.Beer;
 import com.bardev.domain.entity.enums.BitternessLevel;
 import com.bardev.domain.service.SetUpBeerService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +34,7 @@ class MenuBitterServiceImplTest {
     SetUpBeerService setUpBeerService;
 
 
+
     @Test
     void getHigher() {
         double highBitterPriceDefault = 15;
@@ -40,10 +44,22 @@ class MenuBitterServiceImplTest {
         );
         when(beerService.getGreaterIbu(40)).thenReturn(beerResponseList);
 
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 9.0, 41.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 10.0, 41.0, 12.0)
-        );
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
+
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
 
         when(setUpBeerService.setUpTheBeers(beerResponseList,highBitterPriceDefault)).thenReturn(beerDTOList);
 
@@ -60,11 +76,25 @@ class MenuBitterServiceImplTest {
                 new BeerResponse(2L, "Skol", "Cerveja Brasileira", 10.0, 31.0, 12.0)
         );
         when(beerService.getGreaterIbu(30)).thenReturn(beerResponseList);
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 9.0, 31.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 10.0, 32.0, 12.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 10.0, 42.0, 12.0)
-        );
+
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
+
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
+
+
         when(setUpBeerService.setUpTheBeers(beerResponseList,moderateBitterPriceDefault)).thenReturn(beerDTOList);
 
         var beersResultList = service.getModerate();
@@ -81,12 +111,22 @@ class MenuBitterServiceImplTest {
         );
         when(beerService.getLesserIbu(30)).thenReturn(beerResponseList);
 
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
 
-
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 9.0, 28.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 10.0, 27.0, 12.0)
-        );
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
 
         when(setUpBeerService.setUpTheBeers(beerResponseList,weakerBitterPriceDefault)).thenReturn(beerDTOList);
 

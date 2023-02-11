@@ -57,10 +57,23 @@ class MenuAlcoholServiceImplTest {
         );
         when(beerService.getGreaterAbv(8)).thenReturn(beerResponseList);
 
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 9.0, 5.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 10.0, 7.0, 12.0)
-        );
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
+
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
+
         when(setUp.setUpTheBeers(beerResponseList, highAlcoholBeerPriceDefault)).thenReturn(beerDTOList);
 
         // When
@@ -82,16 +95,28 @@ class MenuAlcoholServiceImplTest {
         );
         when(beerService.getLesserAbv(5)).thenReturn(beerResponseList);
 
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 4.0, 5.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 3.0, 7.0, 12.0)
-        );
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
+
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
 
         when(setUp.setUpTheBeers(beerResponseList,lowAlcoholBeerPriceDefault)).thenReturn(beerDTOList);
 
         List<BeerDTO> beers = service.getWeaker();
 
-        assertEquals(beers.get(1).getId(),"2L");
+        assertEquals(beers.get(1).getId(),"2");
         assertEquals(beers.get(1).getAlcoholLevel(), AlcoholLevel.BAIXO);
 
     }
@@ -105,11 +130,24 @@ class MenuAlcoholServiceImplTest {
                 new BeerResponse(2L, "Skol", "Cerveja Brasileira", 6.0, 7.0, 12.0)
         );
         when(beerService.getGreaterAbv(5)).thenReturn(beerResponseList);
-        List<BeerDTO> beerDTOList = Arrays.asList(
-                new BeerDTO("1L", "Heineken", "Champions League", 6.0, 5.0, 10.0),
-                new BeerDTO("2L", "Skol", "Cerveja Brasileira", 7.0, 7.0, 12.0),
-                new BeerDTO("2L", "Teste", "Cerveja Teste", 10.0, 7.0, 12.0)
-        );
+
+        List<BeerDTO> beerDTOList = new ArrayList<>();
+        for(BeerResponse b : beerResponseList) {
+            Beer pivot = new Beer();
+            pivot.setAlcoholLevel(b.getAbv());
+            pivot.setBitternessLevel(b.getIbu());
+            pivot.setColorLevel(b.getEbc());
+
+            BeerDTO beerDTO = new BeerDTO();
+            beerDTO.setId(b.getId().toString());
+            beerDTO.setName(b.getName());
+            beerDTO.setDescription(b.getDescription());
+            beerDTO.setAlcoholLevel(pivot.getAlcoholLevel());
+            beerDTO.setBitternessLevel(pivot.getBitternessLevel());
+            beerDTO.setColorLevel( pivot.getColorLevel());
+            beerDTOList.add(beerDTO);
+        }
+
         when(setUp.setUpTheBeers(beerResponseList,moderateAlcoholBeerPriceDefault)).thenReturn(beerDTOList);
 
 
@@ -121,26 +159,5 @@ class MenuAlcoholServiceImplTest {
 
 
 
-    private List<BeerDTO> localSetUpToDto(List<BeerResponse> beers,double value) {
-        List<Beer> beer = new ArrayList<Beer>();
-        for(BeerResponse b: beers) {
-            Beer cerveja = new Beer();
-            cerveja.setId(b.getId().toString());
-            cerveja.setName(b.getName());
-            cerveja.setPrice(value);
-            cerveja.setDescription(b.getDescription());
-            cerveja.setAlcoholLevel(
-                    b.getAbv() != null ? b.getAbv() : 0.0
-            );
-            cerveja.setBitternessLevel(
-                    b.getIbu() != null ? b.getIbu() : 0.0
-            );
-            cerveja.setColorLevel(
-                    b.getEbc() != null ? b.getEbc() : 0.0
-            );
-            beer.add(cerveja);
-        }
-        return mapper.beerDTOList(beer);
-    }
 }
 

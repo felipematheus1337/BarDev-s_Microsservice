@@ -31,27 +31,7 @@ public class BeerDTO {
 
     private ColorLevel colorLevel;
 
-    public BeerDTO(String s, String name, String description, double a, double b, double c) {
-        this.id = s;
-        this.name = name;
-        this.description = description;
-        setAlcoholLevel(a);
-        setBitternessLevel(b);
-        setColorLevel(c);
-    }
 
-    public void setAlcoholLevel(double abv) {
-        AlcoholLevel alcoholLevel = AlcoholLevel.BAIXO;
-        this.alcoholLevel = (AlcoholLevel) alcoholLevel.convert(abv);
-    }
 
-    public void setBitternessLevel(double ibu) {
-        BitternessLevel bitternessLevel = BitternessLevel.MODERADO;
-        this.bitternessLevel = (BitternessLevel) bitternessLevel.convert(ibu);
-    }
 
-    public void setColorLevel(double ebc) {
-        ColorLevel colorLevel = ColorLevel.AMBAR;
-        this.colorLevel = (ColorLevel) colorLevel.convert(ebc);
-    }
 }
